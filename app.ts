@@ -64,6 +64,7 @@ declare module 'egg' {
 function formatPaths(files: string[]) {
   return files.map(file => {
     const name = getModelName(file)
+    file = file.split(sep).join('/')
     const importPath = `../${file}`.replace(/\.ts$|\.js$/g, '')
     return {
       name,
@@ -147,7 +148,7 @@ export default async (app: Application) => {
     try {
       await connectDB(app)
       // if (app.config.env === 'local') {
-        watchEntity(app)
+      watchEntity(app)
       // }
       await loadEntityAndModel(app)
     } catch (error) {
