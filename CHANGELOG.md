@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.1](http://github.com/forsigner/forsigner/egg-typeorm/compare/v1.3.0...v1.3.1) (2019-07-02)
+
+
+### Bug Fixes
+
+* handle window sep ([9adaeec](http://github.com/forsigner/forsigner/egg-typeorm/commit/9adaeec))
+
+
+
 # [1.3.0](http://github.com/forsigner/forsigner/egg-typeorm/compare/v1.2.1...v1.3.0) (2019-03-25)
 
 
