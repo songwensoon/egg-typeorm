@@ -3,8 +3,8 @@ import { find } from 'fs-jetpack'
 import { Application } from 'egg'
 import { createConnection, getRepository } from 'typeorm'
 import { watch } from 'chokidar'
-import fs from 'fs-extra'
-import prettier from 'prettier'
+import * as fs from 'fs-extra'
+import * as prettier from 'prettier'
 
 export function formatCode(text: string) {
   return prettier.format(text, {
@@ -151,8 +151,10 @@ export default async (app: Application) => {
       watchEntity(app)
       // }
       await loadEntityAndModel(app)
+      app.logger.info('[typeorm]', '数据链接成功')
     } catch (error) {
-      app.logger.info(JSON.stringify(error))
+      app.logger.error('[typeorm]', '数据库链接失败')
+      app.logger.error(error)
     }
   })
 }
