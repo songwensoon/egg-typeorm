@@ -8,4 +8,5 @@ run/
 *.swp
 
 .history/
+yarn.lock
 app.js
