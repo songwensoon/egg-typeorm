@@ -16,8 +16,24 @@ export function formatCode(text: string) {
   })
 }
 
+function handleConfig(config: any, env: string) {
+  if (env !== 'prod') {
+    return config
+  }
+  const keys = ['entities', 'migrations', 'subscribers']
+  for (const key of keys) {
+    if (config[key]) {
+      const newValue = config[key].map((item: string) =>
+        item.replace(/\.ts$/, '.js'),
+      )
+      config[key] = newValue
+    }
+  }
+  return config
+}
+
 async function connectDB(app: Application) {
-  const config = app.config.typeorm
+  const config = handleConfig(app.config.typeorm, app.config.env)
   const connection = await createConnection(config)
   app.context.connection = connection
 }
