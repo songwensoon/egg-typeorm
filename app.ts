@@ -133,8 +133,7 @@ async function loadEntityAndModel(app: Application) {
 
   if (!fs.existsSync(entityDir)) return
 
-  // TODO: handle other env
-  const matching = app.config.env === 'local' ? '*.ts' : '*.js'
+  const matching = ['unittest', 'local'].includes(app.config.env) ? '*.ts' : '*.js'
 
   const files = find(entityDir, { matching })
   app.context.repo = {}
