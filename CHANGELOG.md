@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.4.0](http://github.com/forsigner/forsigner/egg-typeorm/compare/v1.3.2...v1.4.0) (2019-08-29)
+
+
+### Features
+
+* support export {SomeEntity} ([53dbc3c](http://github.com/forsigner/forsigner/egg-typeorm/commit/53dbc3c))
+
+
+
 ## [1.3.2](http://github.com/forsigner/forsigner/egg-typeorm/compare/v1.3.1...v1.3.2) (2019-07-15)
 
 
