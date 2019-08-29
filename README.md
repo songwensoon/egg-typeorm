@@ -76,15 +76,13 @@ config.typeorm = {
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 
 @Entity()
-class User {
+export class User {
   @PrimaryGeneratedColumn()
   id: number
 
   @Column()
   name: string
 }
-
-export default User
 ```
 
 ### Use with FindOptions

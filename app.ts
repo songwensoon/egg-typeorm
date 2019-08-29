@@ -1,7 +1,7 @@
 import { join, sep } from 'path'
 import { find } from 'fs-jetpack'
 import { Application } from 'egg'
-import { createConnection, getRepository } from 'typeorm'
+import { createConnection, getRepository, Connection } from 'typeorm'
 import { watch } from 'chokidar'
 import * as fs from 'fs-extra'
 import * as prettier from 'prettier'
@@ -127,6 +127,35 @@ function createTyingFile(app: Application) {
   writeTyping(typingPath, text)
 }
 
+function getEntityFromPath(app: Application, entityPath: string) {
+  const connection: Connection = app.context.connection
+  const fileModule = require(entityPath)
+  const entities = Object.keys(fileModule).reduce(
+    (result, cur) => {
+      try {
+        // TODO: 太 hack
+        connection.getMetadata(fileModule[cur])
+        if (!result.includes(fileModule[cur])) {
+          return [...result, fileModule[cur]]
+        } else {
+          return result
+        }
+      } catch {
+        //
+      }
+
+      return result
+    },
+    [] as any[],
+  )
+
+  if (!entities.length) {
+    throw new Error(`${entityPath} 格式不正确，不存在 @entity`)
+  }
+
+  return entities[0]
+}
+
 async function loadEntityAndModel(app: Application) {
   const { baseDir } = app
   const entityDir = join(baseDir, 'app', 'entity')
@@ -143,14 +172,13 @@ async function loadEntityAndModel(app: Application) {
   try {
     for (const file of files) {
       const entityPath = join(baseDir, file)
-      const entity = require(entityPath).default
-
+      const entity: any = getEntityFromPath(app, entityPath)
       const name = getModelName(file)
       app.context.repo[name] = getRepository(entity)
       app.context.entity[name] = entity
     }
   } catch (e) {
-    console.log(e)
+    app.logger.error(e)
   }
 }
 
