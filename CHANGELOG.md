@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [1.5.0](http://github.com/forsigner/forsigner/egg-typeorm/compare/v1.4.0...v1.5.0) (2019-09-02)
+
+
+### Features
+
+* useContainer ([4451b50](http://github.com/forsigner/forsigner/egg-typeorm/commit/4451b50))
+
+
+
 # [1.4.0](http://github.com/forsigner/forsigner/egg-typeorm/compare/v1.3.2...v1.4.0) (2019-08-29)
 
 
