@@ -1,7 +1,14 @@
 import { join, sep } from 'path'
 import { find } from 'fs-jetpack'
 import { Application } from 'egg'
-import { createConnection, getRepository, Connection } from 'typeorm'
+import {
+  createConnection,
+  getRepository,
+  Connection,
+  useContainer,
+} from 'typeorm'
+import { Container } from 'typedi'
+
 import { watch } from 'chokidar'
 import * as fs from 'fs-extra'
 import * as prettier from 'prettier'
@@ -34,6 +41,8 @@ function handleConfig(config: any, env: string) {
 
 async function connectDB(app: Application) {
   const config = handleConfig(app.config.typeorm, app.config.env)
+  useContainer(Container)
+
   const connection = await createConnection(config)
   app.context.connection = connection
 }

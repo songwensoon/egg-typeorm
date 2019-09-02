@@ -15,7 +15,9 @@
     "fs-extra": "^7.0.1",
     "fs-jetpack": "^2.2.2",
     "prettier": "^1.18.2",
-    "typeorm": "^0.2.18"
+    "typedi": "^0.8.0",
+    "typeorm": "^0.2.18",
+    "typeorm-typedi-extensions": "^0.2.3"
   },
   "devDependencies": {
     "@types/chokidar": "^1.7.5",
