@@ -10,3 +10,4 @@ run/
 .history/
 yarn.lock
 app.js
+package-lock.json
