@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.1](http://github.com/forsigner/forsigner/egg-typeorm/compare/v1.5.0...v1.5.1) (2019-10-25)
+
+
+### Bug Fixes
+
+* choose .ts or .js by checking TS loader. ([91f4fc3](http://github.com/forsigner/forsigner/egg-typeorm/commit/91f4fc3))
+* unittest env require ts files ([f41692b](http://github.com/forsigner/forsigner/egg-typeorm/commit/f41692b))
+
+
+
 # [1.5.0](http://github.com/forsigner/forsigner/egg-typeorm/compare/v1.4.0...v1.5.0) (2019-09-02)
 
 
