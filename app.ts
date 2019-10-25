@@ -13,6 +13,8 @@ import { watch } from 'chokidar'
 import * as fs from 'fs-extra'
 import * as prettier from 'prettier'
 
+const hasTsLoader = typeof require.extensions['.ts'] === 'function';
+
 export function formatCode(text: string) {
   return prettier.format(text, {
     semi: false,
@@ -23,8 +25,8 @@ export function formatCode(text: string) {
   })
 }
 
-function handleConfig(config: any, env: string) {
-  if (env !== 'prod') {
+function handleConfig(config: any, _env: string) {
+  if (hasTsLoader) {
     return config
   }
   const keys = ['entities', 'migrations', 'subscribers']
@@ -171,8 +173,7 @@ async function loadEntityAndModel(app: Application) {
 
   if (!fs.existsSync(entityDir)) return
 
-  // TODO: handle other env
-  const matching = app.config.env === 'local' ? '*.ts' : '*.js'
+  const matching = hasTsLoader ? '*.ts' : '*.js'
 
   const files = find(entityDir, { matching })
   app.context.repo = {}
